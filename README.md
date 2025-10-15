@@ -14,12 +14,90 @@ pnpm dev
 bun dev
 ```
 
-💻 Projects
+🚀 Project Showcase — Next Hire
+🌐 Live Demo
 
-Next Hire — Deployed on Vercel
-📍 Link: [Next Hire](https://next-hire-gray.vercel.app)
+🔗 [Next Hire](https://next-hire-gray.vercel.app)
 
+🧠 Overview
+Next Hire is a live coding interview platform built with Next.js 14, designed to connect candidates and interviewers in real-time.
+It enables live coding sessions, interactive collaboration, and performance-based rating, allowing interviewers to assess candidates efficiently.
+The platform is powered by Clerk for authentication, Convex for real-time data management, and Vercel for seamless deployment.
 
-🧩 Tech Stack: Next.js, TypeScript, React, Tailwind CSS
-📝 Description:
-Developed a modern web application using Next.js with server-side rendering and font optimization using Vercel’s Geist font. The app features dynamic routing and automatic code updates on file edits.
+🧰 Tech Stack
+<div align="center">
+<!-- Tech Stack Table (HTML + CSS) -->
+<section aria-labelledby="techstack-heading" style="font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; padding:16px;">
+  <h3 id="techstack-heading" style="margin-bottom:12px;">🧰 Tech Stack</h3>
+
+  <div style="overflow-x:auto;">
+    <table role="table" style="width:100%; border-collapse:collapse; min-width:600px;">
+      <thead>
+        <tr style="background:#0f172a; color:#fff;">
+          <th scope="col" style="text-align:center; padding:12px 16px; font-weight:600; font-size:14px;">Frontend</th>
+          <th scope="col" style="text-align:center; padding:12px 16px; font-weight:600; font-size:14px;">Backend</th>
+          <th scope="col" style="text-align:center; padding:12px 16px; font-weight:600; font-size:14px;">Auth</th>
+          <th scope="col" style="text-align:center; padding:12px 16px; font-weight:600; font-size:14px;">Deployment</th>
+          <th scope="col" style="text-align:center; padding:12px 16px; font-weight:600; font-size:14px;">Integrations</th>
+        </tr>
+      </thead>
+        <tr style="background:#ffffff;">
+          <td style="text-align:center; padding:18px 16px; border-bottom:1px solid #e6e9ef;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-size:28px;">⚡</div>
+              <div style="font-weight:700;">Next.js</div>
+              <div style="font-size:13px; color:#555;">React · App Router</div>
+            </div>
+          </td>
+          <td style="text-align:center; padding:18px 16px; border-bottom:1px solid #e6e9ef;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-size:28px;">⚙️</div>
+              <div style="font-weight:700;">Convex</div>
+              <div style="font-size:13px; color:#555;">Realtime DB & Functions</div>
+            </div>
+          </td>
+          <td style="text-align:center; padding:18px 16px; border-bottom:1px solid #e6e9ef;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-size:28px;">🔐</div>
+              <div style="font-weight:700;">Clerk</div>
+              <div style="font-size:13px; color:#555;">Auth & User Management</div>
+            </div>
+          </td>
+          <td style="text-align:center; padding:18px 16px; border-bottom:1px solid #e6e9ef;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-size:28px;">▲</div>
+              <div style="font-weight:700;">Vercel</div>
+              <div style="font-size:13px; color:#555;">CI/CD & Hosting</div>
+            </div>
+          </td>
+          <td style="text-align:center; padding:18px 16px; border-bottom:1px solid #e6e9ef;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="font-size:28px;">🔄</div>
+              <div style="font-weight:700;">Webhooks</div>
+              <div style="font-size:13px; color:#555;">Integrations & Triggers</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="margin-top:10px; color:#374151; font-size:13px;">
+  </p>
+</section>
+
+</div>
+🖼️ Project Preview
+<div align="center"> <!-- Replace the image links below with your actual project screenshots --> <img src="https://via.placeholder.com/800x450.png?text=Homepage+Screenshot" alt="Homepage Screenshot" width="80%" /> <br/><br/> <img src="https://via.placeholder.com/800x450.png?text=Dashboard+Screenshot" alt="Dashboard Screenshot" width="80%" /> <br/><br/> <img src="https://via.placeholder.com/800x450.png?text=Login+Page" alt="Login Page" width="80%" /> </div>
+🧩 Key Features
+
+✅ Modern UI with Next.js App Router
+✅ User authentication with Clerk
+✅ Real-time data sync via Convex
+✅ Fully deployed on Vercel
+✅ Webhooks for seamless background operations
+
+📬 Feedback
+
+If you like this project, ⭐ it on GitHub
+ and share your thoughts!
