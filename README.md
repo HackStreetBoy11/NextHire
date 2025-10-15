@@ -17,7 +17,8 @@ bun dev
 💻 Projects
 
 Next Hire — Deployed on Vercel
-📍 Link: (`next-hire-gray.vercel.app`)
+📍 Link: [Next Hire](https://next-hire-gray.vercel.app)
+
 
 🧩 Tech Stack: Next.js, TypeScript, React, Tailwind CSS
 📝 Description:
