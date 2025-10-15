@@ -88,7 +88,19 @@ The platform is powered by Clerk for authentication, Convex for real-time data m
 
 </div>
 🖼️ Project Preview
-<div align="center"> <!-- Replace the image links below with your actual project screenshots --> <img src="https://via.placeholder.com/800x450.png?text=Homepage+Screenshot" alt="Homepage Screenshot" width="80%" /> <br/><br/> <img src="https://via.placeholder.com/800x450.png?text=Dashboard+Screenshot" alt="Dashboard Screenshot" width="80%" /> <br/><br/> <img src="https://via.placeholder.com/800x450.png?text=Login+Page" alt="Login Page" width="80%" /> </div>
+<div align="center">
+  <!-- Project Screenshots -->
+  <img src="https://github.com/HackStreetBoy11/NextHire/blob/main/public/images/img1.png?raw=true" alt="Screenshot 1" width="80%" />
+  <br/><br/>
+  <img src="https://github.com/HackStreetBoy11/NextHire/blob/main/public/images/img2.png?raw=true" alt="Screenshot 2" width="80%" />
+  <br/><br/>
+  <img src="https://github.com/HackStreetBoy11/NextHire/blob/main/public/images/img3.png?raw=true" alt="Screenshot 3" width="80%" />
+  <br/><br/>
+  <img src="https://github.com/HackStreetBoy11/NextHire/blob/main/public/images/img4.png?raw=true" alt="Screenshot 4" width="80%" />
+  <br/><br/>
+  <img src="https://github.com/HackStreetBoy11/NextHire/blob/main/public/images/img5.png?raw=true" alt="Screenshot 5" width="80%" />
+</div>
+
 🧩 Key Features
 
 ✅ Modern UI with Next.js App Router
