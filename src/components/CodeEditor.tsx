@@ -7,31 +7,72 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { AlertCircleIcon, BookIcon, LightbulbIcon } from "lucide-react";
 import Editor from "@monaco-editor/react";
 
+/*
+    CODING_QUESTIONS: an array of question objects(title,description,examples,constraints,startCode)
+    Language: an array of supported language (e.g. Javascript,python, java)
+    ResizablePanelGroup: from your UI library -- lets you split screen vertically or horizontally, and drag to 
+    resize the question panel and code editor panel
+    scrollArea: adds scrollable containers for overflowing content
+    select components: for dropdowns (choosing question or language)
+    card: structured,styled container for question content
+    icons (BookIcon,LightbulbIcon, AlertCircleIcon)- visully label each section
+    @monaco-editor/react-> the core vs code-like code editor embedded in browser
+*/
+
 function CodeEditor() {
     const [selectedQuestion, setSelectedQuestion] = useState(CODING_QUESTIONS[0]);
     const [language, setLanguage] = useState<"javascript" | "python" | "java">(LANGUAGES[0].id);
     const [code, setCode] = useState(selectedQuestion.starterCode[language]);
+    /*
+        selectQuestion: stores the currently active coding problem
+            - initially set to the first question in CODING_QUESTIONS.
+        language: Stores the selected language (default=first one,probably javascript)
+        code: stores the current code in the editor
+            - starts with the starter code for the selected question + selected language
+        These three  states are interlinked -- when the question or language changes, the editor content updates
+        accordingly
+    */
+
 
     const handleQuestionChange = (questionId: string) => {
         const question = CODING_QUESTIONS.find((q) => q.id === questionId)!;
         setSelectedQuestion(question);
         setCode(question.starterCode[language]);
     };
+    /*
+        finds the selected question by ID
+        updates the selectedQuestion state
+        updates the code editor with the question's starter code for the current language
+    */
 
     const handleLanguageChange = (newLanguage: "javascript" | "python" | "java") => {
         setLanguage(newLanguage);
         setCode(selectedQuestion.starterCode[newLanguage]);
     };
+    /*
+        updates language whnen user switches
+        sets code editor to teh corresponding starter code for that question in the new language
+    */
 
     return (
         <ResizablePanelGroup direction="vertical" className="min-h-[calc-100vh-4rem-1px]">
+            {/* 
+                direction="vertical"-> top(question) and bottom (editor) panels
+                min-h-[calc-100vh-4rem-1px]: full screen height minus navbar or margin space
+            */}
             {/* QUESTION SECTION */}
             <ResizablePanel>
                 <ScrollArea className="h-full">
                     <div className="p-6">
+                        {/* 
+                            first resizable panel -> for problem details
+                            scrollArea: allows long questions to scroll independnetly
+                            p-6: padding inside the section
+                        */}
                         <div className="max-w-4xl mx-auto space-y-6">
                             {/* HEADER */}
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                {/* Responsive layout -> question title and selectors side-by-side on larger screens */}
                                 <div className="space-y-1">
                                     <div className="flex items-center gap-2">
                                         <h2 className="text-2xl font-semibold tracking-tight">
@@ -86,6 +127,11 @@ function CodeEditor() {
                                             ))}
                                         </SelectContent>
                                     </Select>
+                                    {/* 
+                                        the first select -> switch between coding questions.
+                                        the second select -> switch between supported languages (with flags/icons
+                                        loaded dynamically  from /public/{lang}.png)
+                                    */}
                                 </div>
                             </div>
 
@@ -101,6 +147,11 @@ function CodeEditor() {
                                     </div>
                                 </CardContent>
                             </Card>
+                            {/* 
+                                Displays the problem statement
+                                uses tailwind typography (prose) for nice formatting
+                                whitespace-pre-line -> preserve line breaks
+                            */}
 
                             {/* PROBLEM EXAMPLES */}
                             <Card>
@@ -128,6 +179,12 @@ function CodeEditor() {
                                                     </ScrollArea>
                                                 </div>
                                             ))}
+                                            {/* 
+                                                Displays test exmaple with input, output and optional explanation
+                                                Each inside a scrollable code block
+                                                clean formatted using font-mono and muted background
+                                            */}
+
                                         </div>
                                         <ScrollBar />
                                     </ScrollArea>
@@ -152,6 +209,13 @@ function CodeEditor() {
                                     </CardContent>
                                 </Card>
                             )}
+
+                            {/* 
+                                Displays problem constraints if available 
+                                example
+                                    -- 1<=nums.length <= 10^5
+                                        0<=nums[i]<=1000
+                            */}
                         </div>
                     </div>
                     <ScrollBar />
@@ -159,7 +223,7 @@ function CodeEditor() {
             </ResizablePanel>
 
             <ResizableHandle withHandle />
-
+            {/* visual draggable divider that lets you resize top(question) and bottom (editor) panels interactively */}
             {/* CODE EDITOR */}
             <ResizablePanel defaultSize={60} maxSize={100}>
                 <div className="h-full relative">
@@ -183,6 +247,15 @@ function CodeEditor() {
                     />
                 </div>
             </ResizablePanel>
+            {/* 
+                Monaco Editor component:
+                    -- language: dynamically matches user-selected language.
+                    -- theme="vs-darl": gives a dark VS Code theme
+                    value={code}: bound to react state, live updates
+                    onchange: updates code state when user types
+                options: configure  editor behavior (font-size, padding, layout etc)
+                defaultSize(60)-> the editor takes up 60% of available height by defalt
+            */}
         </ResizablePanelGroup>
     );
 }

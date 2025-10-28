@@ -308,3 +308,31 @@ function InterviewScheduleUI() {
     );
 }
 export default InterviewScheduleUI;
+
+
+// 🧠 Purpose
+// It’s a full interview scheduling dashboard — lets users (like HR/interviewers) create, view, and manage interview meetings using Stream Video SDK, Convex, and Clerk authentication.
+// ⚙️ How It Works
+// Fetches data
+// Uses Convex APIs to get:
+// All users (getUsers)
+// All interviews (getAllInterviews)
+// Filters users into candidates and interviewers.
+// Form state
+// Stores form inputs like title, description, date, time, candidate, and selected interviewers.
+// Dialog for scheduling
+// Opens a popup form (Dialog) where you can:
+// Enter interview title and description
+// Choose a candidate
+// Add/remove interviewers
+// Pick a date and time
+// Scheduling logic (scheduleMeeting)
+// Creates a Stream call (video meeting) using the Stream Video client.
+// Saves interview info to the Convex database using createInterview.
+// Shows success or error via toast notifications.
+// UI Display
+// If interviews are loading → shows spinner
+// If available → displays them using MeetingCard components
+// If none → shows “No interviews scheduled” message
+// 🧩 In short
+// InterviewScheduleUI = Fetch users & interviews → Let user fill form → Create a video call + save to DB → Show scheduled interviews in a grid.

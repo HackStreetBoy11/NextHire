@@ -6,11 +6,19 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import useGetCalls from "@/hooks/useGetCalls";
 import { CallRecording } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
+// LoaderUI → loading spinner component.
+// RecordingCard → UI card to display a single call recording.
+// ScrollArea → scrollable area for the recordings list.
+// useGetCalls → custom hook to fetch all the user’s calls.
+// CallRecording → type from Stream SDK.
+// useState, useEffect → React hooks for state & side effects.
+
 
 function RecordingsPage() {
   const { calls, isLoading } = useGetCalls();
   const [recordings, setRecordings] = useState<CallRecording[]>([]);
-
+// useGetCalls() gives all call objects and a loading flag.
+// recordings stores all fetched video recordings.
   useEffect(() => {
     const fetchRecordings = async () => {
       if (!calls) return;
@@ -28,8 +36,13 @@ function RecordingsPage() {
 
     fetchRecordings();
   }, [calls]);
+//   Runs whenever calls change.
+// For each call → gets its recordings using queryRecordings().
+// Combines all recordings using flatMap and stores them in state.
+// Handles errors safely.
 
   if (isLoading) return <LoaderUI />;
+  // while calls are loading -> show a spinner
 
   return (
     <div className="container max-w-7xl mx-auto p-6">
@@ -38,7 +51,7 @@ function RecordingsPage() {
       <p className="text-muted-foreground my-1">
         {recordings.length} {recordings.length === 1 ? "recording" : "recordings"} available
       </p>
-
+    {/* displays page title and count of available recordings */}
       {/* RECORDINGS GRID */}
 
       <ScrollArea className="h-[calc(100vh-12rem)] mt-3">
@@ -54,6 +67,11 @@ function RecordingsPage() {
           </div>
         )}
       </ScrollArea>
+      {/* 
+        Creates a scrollable area for recordings.
+        If there are recordings → shows them in a responsive grid using RecordingCard.
+        Otherwise → shows a “No recordings available” message.
+      */}
     </div>
   );
 }

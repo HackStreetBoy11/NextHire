@@ -18,3 +18,8 @@ function UserInfo({ user }: { user: User }) {
     );
 }
 export default UserInfo;
+
+// This UserInfo component displays a user’s avatar and name in a small flex layout.
+// It uses Shadcn UI’s Avatar to show the user’s profile image (user.image).
+// If no image is available, it shows a fallback icon (UserCircleIcon).
+// Finally, it displays the user’s name (user.name) beside the avatar.

@@ -4,6 +4,14 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import toast from "react-hot-toast";
 import { MessageSquareIcon, StarIcon } from "lucide-react";
+/*
+    useState: React hook to manage local state(open dialog, comment text,rating, etc)
+    Id : type from convex auto-generated model -- ensures interviewId matches the "interviews" table type
+    useMutation,useQuery: convex react  hooks to read/write data in the backend
+    api: convex's auto-generated API object that gives you direct access to server functions
+    toast: Library for showing user notifications
+    MessageSquareIcon,StarIcon: Icons for UI (comments & rating)
+*/
 import {
     Dialog,
     DialogContent,
@@ -21,16 +29,33 @@ import { format } from "date-fns";
 import { Label } from "./ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Textarea } from "./ui/textarea";
+/*
+    various ui components (dialog,button,badge, scrollArea, etc) from your shadcn/ui setup
+    getIterviewInfo: Helper function that fetches interviewer details(like name & images) by ID
+    date-fns: Formats timestamps
+    input components (select,Textarea) for rating & comment input
+*/
 
 function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
     const [isOpen, setIsOpen] = useState(false);
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("3");
+    /*  
+        Props: interviewId identifies which interview this comment belong to 
+        State:
+            - isOpen: Dialog visibility
+            - comment: text of the user's comment
+            - rating: selected rating(stored as string "1"-"5")
+    */
 
     const addComment = useMutation(api.comments.addComment);
     const users = useQuery(api.users.getUsers);
     const existingComments = useQuery(api.comments.getComments, { interviewId });
-
+    /*
+        addComment: Calls the convex mutation to add a new comment
+        users: Fetch all users (used to display interviewer details)
+        existingComments: Fetch all comments for this specific interview
+    */
     const handleSubmit = async () => {
         if (!comment.trim()) return toast.error("Please enter comment");
 
@@ -49,7 +74,13 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
             toast.error("Failed to submit comment");
         }
     };
-
+    /*
+        This handles comment submission:
+        1- checks if comment is not empty
+        2- calls addcomment mutation with interviewId, content, and numeric rating
+        3- on success -> shows toast, resets input fields, closes dialog
+        4- on error -> shows failure toast
+    */
     const renderStars = (rating: number) => (
         <div className="flex gap-0.5">
             {[1, 2, 3, 4, 5].map((starValue) => (
@@ -60,8 +91,10 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
             ))}
         </div>
     );
+    //This dynamically creates 5 starts, filling them up based on the rating value - perfect for a quick visual respresentation of feedback
 
     if (existingComments === undefined || users === undefined) return null;
+    // Avoid rendering before data loads -- prevents runtime errors.
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -72,11 +105,15 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
                     Add Comment
                 </Button>
             </DialogTrigger>
-
+            {/* 
+                Button that opens the dialog
+                uses dialogTrigger with aschild to make the button the trigger element
+            */}
             <DialogContent className="sm:max-w-[600px]">
                 <DialogHeader>
                     <DialogTitle>Interview Comment</DialogTitle>
                 </DialogHeader>
+                {/*  defines the dialog box width and title */}
 
                 <div className="space-y-6">
                     {existingComments.length > 0 && (
@@ -118,6 +155,17 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
                             </ScrollArea>
                         </div>
                     )}
+                    {/* 
+                        This block only renders if there are previous comments
+                        Inside:
+                            - shows a header with total comment count in a badge
+                            - Display a scrollable list of comments
+                                - each comment shows
+                                    - Interviewer's avatar (via getInerviewerInfo)
+                                    -Name+formatted date/time
+                                    - star rating visualization
+                                    -comment content
+                    */}
 
                     <div className="space-y-4">
                         {/* RATING */}
@@ -136,6 +184,7 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
                                 </SelectContent>
                             </Select>
                         </div>
+                        {/*  A dropdown selector for rating(1-5), each item shows its corresponding numer of stars. */}
 
                         {/* COMMENT */}
                         <div className="space-y-2">
@@ -147,6 +196,7 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
                                 className="h-32"
                             />
                         </div>
+                        {/* A multi-line textarea for inputting detailed feedback */}
                     </div>
                 </div>
 
@@ -157,6 +207,10 @@ function CommentDialog({ interviewId }: { interviewId: Id<"interviews"> }) {
                     </Button>
                     <Button onClick={handleSubmit}>Submit</Button>
                 </DialogFooter>
+                {/* 
+                    Cancel button closes dialog
+                    submit button triggers handleSubmit
+                */}
             </DialogContent>
         </Dialog>
     );
